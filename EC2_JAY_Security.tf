@@ -6,10 +6,10 @@ provider "aws" {
 
 #Ec2instance
 
-module "ec2_instance" {
+resource "ec2_instance" "allow_sample" {
   ami                    = "ami-08df646e18b182346"
   instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group_ids.allow_jay.id]
+  vpc_security_group_ids = [aws_security_group_ids.allow_sample.id, "sg-093281f140f51b9ca"]
 
   tags = {
     name  = "allow_sample"
@@ -47,7 +47,6 @@ resource "aws_security_group" "allow_sample" {
   }
 ]
   tags = {
-    Name = "allow_jay"
+    Name = "allow_sample"
   }
 }
-
